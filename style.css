@@ -1,86 +1,52 @@
-*{
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
+*
+{
+    margin: 0;
+    padding: 0;
 }
 
-.container{
-	width: 100%;
-	height: 100%;
-	background: #42455a;
+/*----------------NavigationBar---------------*/
+
+#nav-bar
+{
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-.menu ul{
-	display: inline-flex;
-	margin: 50px;
+.navbar-brand img
+{
+    height: 40px;
+    padding-left: 30px;
 }
 
-.menu ul li{
-	list-style: none;
-	margin: 0px 30px;
-	color: #b2b1b1;
-	cursor: pointer;
-}
-.menu img{
-	width: 40px;
+.navbar-nav li
+{
+    padding: 0 10px;
 }
 
-.logo img{
-	width: 40px;
-	margin-top: -10px;
-	margin-right: 40px;
+.navbar-nav li a
+{
+    float: right;
+    text-align: left;
 }
 
-.active{
-	color: #19dafa !important;
+#nav-bar ul li a: :hover{
+    color: #007bff!important;
 }
 
-.signup-btn{
-	top: 40px;
-	right: 80px;
-	position: absolute;
-	text-decoration: none;
-	color: #fff;
+.navbar
+{
+    background: #fff;
 }
 
-.app-picture{
-	width: 40%;
-	float: left;
-	margin-top: -10px;
-	margin-left: 50px;
+.navbar-toggler
+{
+    border: none !important;
 }
 
-.app-picture img{
-	width: 40%;
-	border-radius: 50%;
-	opacity: 0.6;
+.nav-link
+{
+    color: #555 !important;
+    font-weight: 600;
+    font-size: 16px;
 }
-
-.myname h2{
-	font-family: Arial, Helvetica, sans-serif;
-	color: #fff;
-	left: 340px;
-	width: 20%;
-	position: absolute;
-	top: 120px;
-
-}
-
-.summary{
-	top: 160px;
-	width: 30%;
-	left: 340px;
-	text-align: justify;
-	position: absolute;
-	color: #fff;
-	text-decoration: none;
-	/*
-	border: 2px transparent;
-	border-radius: 20px;
-	background-image: linear-gradient(#42455a,#42455a),
-	radial-gradient(circle at top left, #fd00da, #19d7f8);
-	background-origin: border-box;
-	background-clip: content-box, border-box;
-	*/
-}
-
