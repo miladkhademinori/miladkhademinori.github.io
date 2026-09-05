@@ -1,138 +1,468 @@
 <!DOCTYPE html>
-<!--
-    Plain-Academic by Vasilios Mavroudis
-    Released under the Simplified BSD License/FreeBSD (2-clause) License.
-    https://github.com/mavroudisv/plain-academic
--->
-
 <html lang="en">
 <head>
   <title>Milad Khademi Nori</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+  <meta name="description" content="Milad Khademi Nori. Postdoctoral Fellow, Toronto Metropolitan University. Continual learning, federated learning, and the mathematics of pre-trained models.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#14263f;
+      --ink:#1f2937;
+      --muted:#5b6472;
+      --line:#e3e7ee;
+      --accent:#1d4ed8;
+      --accent-soft:#eef3ff;
+      --chip:#0f766e;
+      --bg:#ffffff;
+      --bg-alt:#f6f8fb;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;font-size:16px}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    /* ---------- top bar ---------- */
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
+    .topbar-inner{max-width:1060px;margin:0 auto;padding:12px 24px;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+    .brand{font-weight:800;letter-spacing:.2px;color:var(--navy);font-size:17px}
+    .brand:hover{text-decoration:none}
+    .topnav{display:flex;gap:16px;flex-wrap:wrap;font-size:14.5px;font-weight:500}
+    .topnav a{color:var(--muted)}
+    .topnav a:hover{color:var(--accent);text-decoration:none}
+    /* ---------- layout ---------- */
+    .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+    section{padding:44px 0;border-bottom:1px solid var(--line)}
+    section.alt{background:var(--bg-alt)}
+    .kicker{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+    h2{font-size:26px;margin:0 0 18px;color:var(--navy);font-weight:800;letter-spacing:-.01em}
+    h3{font-size:18px;margin:0 0 10px;color:var(--navy);font-weight:700}
+    /* ---------- hero ---------- */
+    header.hero{padding:64px 0 50px;background:linear-gradient(180deg,#f2f6ff 0%,#ffffff 100%);border-bottom:1px solid var(--line)}
+    .hero-grid{display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap}
+    .hero-photo{width:190px;height:190px;border-radius:14px;object-fit:cover;border:1px solid var(--line);background:#dbe3f0;flex:0 0 auto}
+    .hero-body{flex:1;min-width:280px}
+    .hero-name{font-size:40px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin:0 0 6px}
+    .hero-role{font-size:19px;font-weight:600;color:var(--ink);margin:0 0 4px}
+    .hero-aff{font-size:16px;color:var(--muted);margin:0 0 6px}
+    .hero-mail{font-size:15px;color:var(--muted);margin:0 0 18px}
+    .pills{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:14px;font-weight:600;color:var(--navy)}
+    .pill:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+    .hero-interest{margin:22px 0 0;font-size:16.5px;max-width:640px}
+    .hero-interest b{color:var(--navy)}
+    /* ---------- about ---------- */
+    .about-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:36px}
+    .factlist{margin:0;padding:0;list-style:none}
+    .factlist li{padding:9px 0;border-bottom:1px dashed var(--line);font-size:15px}
+    .factlist b{display:block;color:var(--navy)}
+    /* ---------- interests cards ---------- */
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+    .card{border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;background:#fff}
+    .card h3{font-size:15.5px;margin-bottom:6px}
+    .card p{margin:0;font-size:14.5px;color:var(--muted)}
+    /* ---------- news ---------- */
+    .news{display:grid;grid-template-columns:74px 1fr;row-gap:14px;column-gap:18px}
+    .news .when{font-weight:700;color:var(--accent);font-size:14.5px;padding-top:2px}
+    .news .what{margin:0;font-size:15.5px}
+    /* ---------- publications ---------- */
+    .pubyear{margin:26px 0 10px;font-size:14px;font-weight:800;color:var(--navy);letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid var(--accent-soft);padding-bottom:6px}
+    .pubyear:first-of-type{margin-top:8px}
+    .pub{padding:14px 0;border-bottom:1px solid var(--line)}
+    .pub-title{font-size:16.5px;font-weight:700;color:var(--navy);margin:0 0 3px}
+    .pub-authors{font-size:14.5px;color:var(--muted);margin:0 0 5px}
+    .pub-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px}
+    .badge{display:inline-block;padding:2px 10px;border-radius:6px;font-size:12.5px;font-weight:700;letter-spacing:.02em}
+    .badge.conf{background:var(--accent-soft);color:var(--accent)}
+    .badge.jour{background:#e7f6f3;color:var(--chip)}
+    .pub-links{display:inline-flex;gap:12px;font-size:13.5px;font-weight:600}
+    details.bib{margin-top:8px}
+    details.bib summary{cursor:pointer;font-size:13px;color:var(--muted);font-weight:600;user-select:none}
+    details.bib pre{background:var(--bg-alt);border:1px solid var(--line);border-radius:8px;padding:12px;font-size:12.5px;overflow-x:auto;line-height:1.5}
+    .under-review{margin-top:20px;font-size:14.5px;color:var(--muted);background:var(--bg-alt);border:1px dashed var(--line);border-radius:10px;padding:12px 16px}
+    /* ---------- timeline (education & experience) ---------- */
+    .timeline{display:grid;grid-template-columns:150px 1fr;row-gap:4px;column-gap:26px}
+    .timeline .when{font-weight:700;color:var(--navy);font-size:14.5px;padding-top:2px}
+    .item{padding:10px 0 14px;border-bottom:1px dashed var(--line)}
+    .item:last-child{border-bottom:none}
+    .item .title{font-weight:700;color:var(--navy);font-size:16px;margin:0 0 2px}
+    .item .place{font-size:14.5px;color:var(--accent);font-weight:600;margin:0 0 4px}
+    .item p{margin:0;font-size:14.5px;color:var(--muted)}
+    /* ---------- two column lists ---------- */
+    .twocol{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+    ul.plain{margin:0;padding:0;list-style:none}
+    ul.plain li{padding:9px 0;border-bottom:1px dashed var(--line);font-size:15px}
+    ul.plain li:last-child{border-bottom:none}
+    .award{display:flex;justify-content:space-between;gap:16px}
+    .award .yr{color:var(--muted);font-weight:600;white-space:nowrap}
+    /* ---------- footer ---------- */
+    footer{padding:30px 0 40px;color:var(--muted);font-size:13.5px}
+    footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    /* ---------- responsive ---------- */
+    @media (max-width:820px){
+      .about-grid{grid-template-columns:1fr}
+      .twocol{grid-template-columns:1fr}
+      .timeline{grid-template-columns:1fr}
+      .timeline .when{padding-top:0;margin-bottom:2px}
+      .hero-name{font-size:32px}
+      section{padding:34px 0}
+    }
+  </style>
 </head>
 <body>
 
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">Milad Khademi Nori</a>
+    <nav class="topnav">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#awards">Awards</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#service">Service</a>
+      <a href="Milad_Khademi_Nori.pdf">CV</a>
+    </nav>
+  </div>
+</div>
 
-<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-	  <div class="container">
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			  <ul class="nav navbar-nav">
-				  <li><a href="index.html">Home</a></li>
-				  <li><a href="#publications">Publications</a></li>
-				  <li><a href="Milad_Khademi_Nori.pdf">CV</a></li>
-			  </ul>
-		</div>
-	  </div>
-	</nav>
-  
-  <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
-
-            <!-- Entries Column -->
-            <div class="col-md-8" style="height: 100vh;">
-                
-                <!-- Main Image -->
-                <img class="img-responsive" src="photo.jpg" alt=""><br>
-                
-                <div style="margin-top:3%; text-align:justify;">                
-			<h2><strong>About me</strong></h2>
-			<p>I am a Postdoctoral Fellow in the Department of Computer Science at Toronto Metropolitan University, working with Prof. Guanghui (Richard) Wang on continual and federated learning with pre-trained models. I earned my PhD in Electrical and Computer Engineering from Queen's University in 2024, supervised by Prof. Il-Min Kim, with a thesis on federated and incremental learning. My research builds a mathematical foundation for continual learning: task-confusion bounds that explain when forgetting must occur, the geometry of pre-trained representations that explains when it need not, and memory policies for continually learning agents.</p>
-                </div>
-            </div> 
-
-            <!-- Contact Info on the Sidebar -->
-            <div class="col-md-4">
-                <div style="font-family: 'Oswald', sans-serif; font-size: 32px;"><b>Milad Khademi Nori</b></div><br>
-                <p><b>mkn at torontomu.ca</b><br>
-                <b>miladkhademinori at gmail.com</b></p>
-                <p>Department of Computer Science<br>
-                Toronto Metropolitan University<br>
-                Toronto<br>
-                Ontario <br>
-                Canada<br>
-                </p>
-            </div>
-            
-            
-            <!-- Links on the Sidebar -->
-            <div class="col-md-4" style="margin-top:2%">
-              <dd><a href="https://scholar.google.com/citations?user=TFsm204AAAAJ&hl=en">Google Scholar</a></dd> 
-              <dd><a href="https://www.researchgate.net/profile/Milad-Khademi-Nori">ResearchGate</a></dd> 
-              <dd><a href="https://twitter.com/khademinori?lang=en">Twitter</a></dd>
-              <dd><a href="https://www.linkedin.com/in/milad-khademi-nori">LinkedIn</a></dd>
-	      <dd><a href="https://orcid.org/my-orcid?orcid=0000-0003-0129-4939">ORCID</a></dd>
-	      <dd><a href="https://github.com/miladkhademinori">GitHub</a></dd>
-            </div>
-            
-	            
-	<!-- Publications Section -->
-	<div class="col-md-8" style="height: 100vh;">    
-	    <h2 id="publications">Publications</h2>
-	    
-	    <strong>Peer-reviewed</strong><br/>
-	    <ul>
-	        <li class="paper">
-	            <a href="https://arxiv.org/abs/2505.05926">Khademi Nori, Milad, Il-Min Kim, and Guanghui Wang. "Autoencoder-based hybrid replay for class-incremental learning."</a>
-	            International Conference on Machine Learning (ICML), 2025.
-	        </li>
-	        <li class="paper">
-	            <a href="https://arxiv.org/abs/2501.15356">Khademi Nori, Milad, Il-Min Kim, and Guanghui Wang. "Federated class-incremental learning: A hybrid approach using latent exemplars and data-free techniques to address local and global forgetting."</a>
-	            International Conference on Learning Representations (ICLR), 2025.
-	        </li>
-	        <li class="paper">
-	            <a href="https://arxiv.org/abs/2410.20768">Khademi Nori, Milad, and Il-Min Kim. "Task confusion and catastrophic forgetting in class-incremental learning: A mathematical framework for discriminative and generative modelings."</a>
-	            Advances in Neural Information Processing Systems (NeurIPS), 2024.
-	        </li>
-	        <li class="paper">
-	            Khademi Nori, Milad, Yiqun Ge, and Il-Min Kim. "On the effectiveness of activation noise in both training and inference for generative classifiers."
-	            IEEE Access 11 (2023): 131623-131638.
-	        </li>
-	        <li class="paper">
-	            <a href="https://ieeexplore.ieee.org/abstract/document/9439935">Nori, Milad Khademi, Sangseok Yun, and Il-Min Kim. "Fast federated learning by balancing communication trade-offs."</a>
-	            IEEE Transactions on Communications 69.8 (2021): 5168-5182.
-	        </li>
-	        <li class="paper">
-	            <a href="https://link.springer.com/article/10.1007/s11276-020-02328-w">Khademi Nori, Milad, and Saeed Sharifian. "EDMARA2: A hierarchical routing protocol for EH-WSNs."</a>
-	            Wireless Networks 26.6 (2020): 4303-4317.
-	        </li>
-	        <li class="paper">
-	            <a href="https://ieeexplore.ieee.org/abstract/document/8700536">Nori, Milad Khademi, and Saeed Sharifian. "A qgsa cluster head selection approach for hierarchical routing protocol in the eh-wsns."</a>
-	            2018 4th Iranian conference on signal processing and intelligent systems (ICSPIS). IEEE, 2018.
-	        </li>
-	    </ul>
-	</div>
-
-
-
-
-            
-        </div>
-
-
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <img class="hero-photo" src="photo.jpg" alt="Milad Khademi Nori">
+    <div class="hero-body">
+      <h1 class="hero-name">Milad Khademi Nori, PhD</h1>
+      <p class="hero-role">Postdoctoral Fellow</p>
+      <p class="hero-aff">Department of Computer Science, Toronto Metropolitan University, Toronto</p>
+      <p class="hero-mail">mkn [at] torontomu [dot] ca &nbsp;|&nbsp; miladkhademinori [at] gmail [dot] com</p>
+      <div class="pills">
+        <a class="pill" href="https://scholar.google.com/citations?user=TFsm204AAAAJ&amp;hl=en">Google Scholar</a>
+        <a class="pill" href="https://github.com/miladkhademinori">GitHub</a>
+        <a class="pill" href="https://www.linkedin.com/in/milad-khademi-nori">LinkedIn</a>
+        <a class="pill" href="https://orcid.org/0000-0003-0129-4939">ORCID</a>
+        <a class="pill" href="https://www.researchgate.net/profile/Milad-Khademi-Nori">ResearchGate</a>
+        <a class="pill" href="Milad_Khademi_Nori.pdf">CV (PDF)</a>
+      </div>
+      <p class="hero-interest">I build the <b>mathematics of continual learning</b>: task-confusion bounds that explain when forgetting must occur, the geometry of pre-trained representations that explains when it need not, and memory policies for continually learning agents.</p>
     </div>
-    <!-- /.container -->
-    
-    <!-- Other people may like it too! -->
-    <a style="color:#b5bec9;font-size:0.8em; float:right;" href="https://github.com/mavroudisv/plain-academic">Plain Academic</a> 
-    
-</body>
+  </div>
+</header>
 
+<section id="about">
+  <div class="wrap">
+    <p class="kicker">About</p>
+    <h2>About me</h2>
+    <div class="about-grid">
+      <div>
+        <p>I am a Postdoctoral Fellow in the <a href="https://www.torontomu.ca/">Department of Computer Science at Toronto Metropolitan University</a>, working with Prof. Guanghui (Richard) Wang on continual and federated learning with pre-trained models. I earned my PhD in Electrical and Computer Engineering from Queen's University in 2024, supervised by Prof. Il-Min Kim, with a thesis on federated and incremental learning, completed within the Huawei-funded doctoral research program.</p>
+        <p>My research gives continual learning a mathematical foundation. The starting point is a simple observation: models that keep learning after deployment forget, and the field lacked a theory of when forgetting is unavoidable. My task-confusion framework proved that discriminative learners trained in stages are infeasible in general; the margin and gauge results that followed show what property of a pre-trained representation lifts that infeasibility, and by how much, in closed form; and my current work turns the same quantities into provable memory policies for agents that must decide what to keep, what to consolidate into weights, and what to forget.</p>
+        <p>Every result in this line was produced on a single workstation GPU: the program is deliberately reproducible by any group, without cluster access.</p>
+      </div>
+      <div>
+        <h3>At a glance</h3>
+        <ul class="factlist">
+          <li><b>Publications</b>NeurIPS, ICLR and ICML first-author papers within two years of the PhD, plus IEEE journal papers</li>
+          <li><b>Doctorate</b>Queen's University, 2024, in four years and four months while publishing</li>
+          <li><b>Reviewing</b>Six years for ICML, NeurIPS, ICLR, CVPR and AAAI, and three IEEE Transactions</li>
+          <li><b>Teaching</b>Four years of instruction and laboratories at Queen's, about 110 students per week at peak</li>
+          <li><b>Class rankings</b>Ranked first in both the M.Sc. and B.Sc. graduating classes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research" class="alt">
+  <div class="wrap">
+    <p class="kicker">Research</p>
+    <h2>Research interests</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Theory of continual learning</h3>
+        <p>Task-confusion bounds, infeasibility theorems, and exponential-decay margins: when forgetting must happen, when it need not, and the quantities that decide.</p>
+      </div>
+      <div class="card">
+        <h3>Geometry of pre-trained models</h3>
+        <p>Why frozen and lightly adapted backbones evade the classical limits: margins, head gauge, and certificates computable before training.</p>
+      </div>
+      <div class="card">
+        <h3>Federated learning</h3>
+        <p>Learning across clients without shared data: communication trade-offs, non-IID heterogeneity, and federated incremental learning.</p>
+      </div>
+      <div class="card">
+        <h3>Memory for continual agents</h3>
+        <p>What an agent should write to memory, when to consolidate into weights, and what to forget: rent-or-buy ledgers and policies with guarantees.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="news">
+  <div class="wrap">
+    <p class="kicker">News</p>
+    <h2>Recent news</h2>
+    <div class="news">
+      <div class="when">2025</div><p class="what">Paper accepted at <b>ICML 2025</b> (Vancouver): autoencoder-based hybrid replay for class-incremental learning; presented in person.</p>
+      <div class="when">2025</div><p class="what"><b>Travel award</b> from the Faculty of Science, Toronto Metropolitan University, to present at ICML 2025.</p>
+      <div class="when">2025</div><p class="what">Paper accepted at <b>ICLR 2025</b> (Singapore): federated class-incremental learning with latent exemplars and data-free techniques; presented in person.</p>
+      <div class="when">2024</div><p class="what">Paper accepted at <b>NeurIPS 2024</b> (Vancouver): the task-confusion framework for class-incremental learning; presented in person.</p>
+      <div class="when">2024</div><p class="what">Completed the PhD at Queen's University (January 2024) and joined Toronto Metropolitan University as a Postdoctoral Fellow (March 2024).</p>
+    </div>
+  </div>
+</section>
+
+<section id="publications" class="alt">
+  <div class="wrap">
+    <p class="kicker">Publications</p>
+    <h2>Selected publications</h2>
+
+    <div class="pubyear">2025</div>
+    <div class="pub">
+      <p class="pub-title">Autoencoder-based hybrid replay for class-incremental learning</p>
+      <p class="pub-authors"><b>Milad Khademi Nori</b>, Il-Min Kim, Guanghui Wang</p>
+      <div class="pub-meta">
+        <span class="badge conf">ICML 2025</span>
+        <span class="pub-links"><a href="https://arxiv.org/abs/2505.05926">arXiv</a></span>
+      </div>
+      <details class="bib"><summary>BibTeX</summary>
+<pre>@inproceedings{nori2025autoencoder,
+  author    = {Khademi Nori, Milad and Kim, Il-Min and Wang, Guanghui},
+  title     = {Autoencoder-based hybrid replay for class-incremental learning},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2025}
+}</pre></details>
+    </div>
+    <div class="pub">
+      <p class="pub-title">Federated class-incremental learning: a hybrid approach using latent exemplars and data-free techniques to address local and global forgetting</p>
+      <p class="pub-authors"><b>Milad Khademi Nori</b>, Il-Min Kim, Guanghui Wang</p>
+      <div class="pub-meta">
+        <span class="badge conf">ICLR 2025</span>
+        <span class="pub-links"><a href="https://arxiv.org/abs/2501.15356">arXiv</a></span>
+      </div>
+      <details class="bib"><summary>BibTeX</summary>
+<pre>@inproceedings{nori2025federated,
+  author    = {Khademi Nori, Milad and Kim, Il-Min and Wang, Guanghui},
+  title     = {Federated class-incremental learning: a hybrid approach using latent exemplars and data-free techniques to address local and global forgetting},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  pages     = {84398--84411},
+  year      = {2025}
+}</pre></details>
+    </div>
+
+    <div class="pubyear">2024</div>
+    <div class="pub">
+      <p class="pub-title">Task confusion and catastrophic forgetting in class-incremental learning: a mathematical framework for discriminative and generative modelings</p>
+      <p class="pub-authors"><b>Milad Khademi Nori</b>, Il-Min Kim</p>
+      <div class="pub-meta">
+        <span class="badge conf">NeurIPS 2024</span>
+        <span class="pub-links"><a href="https://arxiv.org/abs/2410.20768">arXiv</a></span>
+      </div>
+      <details class="bib"><summary>BibTeX</summary>
+<pre>@inproceedings{nori2024task,
+  author    = {Khademi Nori, Milad and Kim, Il-Min},
+  title     = {Task confusion and catastrophic forgetting in class-incremental learning: a mathematical framework for discriminative and generative modelings},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {37},
+  pages     = {47678--47707},
+  year      = {2024}
+}</pre></details>
+    </div>
+
+    <div class="pubyear">2023 and earlier</div>
+    <div class="pub">
+      <p class="pub-title">On the effectiveness of activation noise in both training and inference for generative classifiers</p>
+      <p class="pub-authors"><b>Milad Khademi Nori</b>, Yiqun Ge, Il-Min Kim</p>
+      <div class="pub-meta">
+        <span class="badge jour">IEEE Access</span>
+        <span class="pub-meta-note">vol. 11, pp. 131623-131638</span>
+      </div>
+    </div>
+    <div class="pub">
+      <p class="pub-title">Fast federated learning by balancing communication trade-offs</p>
+      <p class="pub-authors"><b>Milad Khademi Nori</b>, Sangseok Yun, Il-Min Kim</p>
+      <div class="pub-meta">
+        <span class="badge jour">IEEE Transactions on Communications</span>
+        <span class="pub-meta-note">vol. 69, no. 8, pp. 5168-5182</span>
+        <span class="pub-links"><a href="https://ieeexplore.ieee.org/abstract/document/9439935">IEEE</a><a href="https://arxiv.org/abs/2105.11028">arXiv</a></span>
+      </div>
+    </div>
+    <div class="pub">
+      <p class="pub-title">EDMARA2: a hierarchical routing protocol for EH-WSNs</p>
+      <p class="pub-authors"><b>Milad Khademi Nori</b>, Saeed Sharifian</p>
+      <div class="pub-meta">
+        <span class="badge jour">Wireless Networks</span>
+        <span class="pub-meta-note">vol. 26, no. 6, pp. 4303-4317</span>
+        <span class="pub-links"><a href="https://link.springer.com/article/10.1007/s11276-020-02328-w">Springer</a></span>
+      </div>
+    </div>
+    <div class="pub">
+      <p class="pub-title">A QGSA cluster head selection approach for hierarchical routing protocol in the EH-WSNs</p>
+      <p class="pub-authors"><b>Milad Khademi Nori</b>, Saeed Sharifian</p>
+      <div class="pub-meta">
+        <span class="badge conf">ICSPIS 2018</span>
+        <span class="pub-links"><a href="https://ieeexplore.ieee.org/abstract/document/8700536">IEEE</a></span>
+      </div>
+    </div>
+
+    <div class="under-review">In addition, six first-author manuscripts are under review at NeurIPS 2026 and AAAI 2027, spanning a margin bound on task confusion, a gauge-anchoring fix for regularized cross-entropy heads, closed-form replay theory, long-tailed incremental learning, a neural-collapse diagnostic, and damped fine-tuning.</div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <p class="kicker">Education</p>
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="when">2019 - 2024</div>
+      <div class="item">
+        <p class="title">PhD, Electrical and Computer Engineering</p>
+        <p class="place">Queen's University, Kingston, Canada</p>
+        <p>Thesis: Federated Learning and Incremental Learning: Private Non-IID Learning. Supervisor: Prof. Il-Min Kim. Completed as part of the Huawei-funded doctoral research program, with semi-annual reviews at Huawei Canada, Ottawa.</p>
+      </div>
+      <div class="when">2016 - 2019</div>
+      <div class="item">
+        <p class="title">M.Sc., Electrical Engineering, ranked first in the class</p>
+        <p class="place">Amirkabir University of Technology, Tehran</p>
+        <p>Thesis: an energy-efficient routing protocol for energy-harvesting wireless sensor networks in the IoT. Supervisor: Prof. Saeed Sharifian.</p>
+      </div>
+      <div class="when">2012 - 2016</div>
+      <div class="item">
+        <p class="title">B.Sc., Electrical Engineering, ranked first in the class</p>
+        <p class="place">Semnan University, Semnan, Iran</p>
+        <p>Digital electronic systems. Supervisor: Prof. Naser Eskandarian. Capstone: a Bluetooth-controlled quadcopter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="alt">
+  <div class="wrap">
+    <p class="kicker">Experience</p>
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="when">Mar 2024 - present</div>
+      <div class="item">
+        <p class="title">Postdoctoral Fellow</p>
+        <p class="place">Department of Computer Science, Toronto Metropolitan University</p>
+        <p>Continual and federated learning with pre-trained models, with Prof. Guanghui (Richard) Wang. All published results of the appointment were produced on a single workstation GPU.</p>
+      </div>
+      <div class="when">Jan 2023 - Apr 2024</div>
+      <div class="item">
+        <p class="title">Research Assistant</p>
+        <p class="place">Queen's University, Innovation Park</p>
+        <p>Exploratory analysis of prostate-cancer datasets with Prof. Sidney Givigi: CT volumes, mass spectrometry, cleaning and preprocessing, volumetric data, landmark registration, four technical reports.</p>
+      </div>
+      <div class="when">Aug 2019 - Nov 2023</div>
+      <div class="item">
+        <p class="title">Doctoral Researcher, Huawei-funded program</p>
+        <p class="place">Queen's University with Huawei Technologies Canada, Ottawa</p>
+        <p>Non-IID deep learning: federated learning under communication burden and heterogeneity; continual learning, forgetting and task confusion. Semi-annual in-person research presentations.</p>
+      </div>
+      <div class="when">2019 - 2023</div>
+      <div class="item">
+        <p class="title">Instructor, Lab Instructor, Teaching Assistant</p>
+        <p class="place">Department of Electrical and Computer Engineering, Queen's University</p>
+        <p>MATLAB programming and mathematics (about 110 students per week) and Python for discrete-time signal processing (about 90 students); laboratories and mentoring.</p>
+      </div>
+      <div class="when">2019 - 2023</div>
+      <div class="item">
+        <p class="title">Vice-President, speaker, public-relations chair</p>
+        <p class="place">Ingenuity Lab, Queen's University</p>
+        <p>Public talks on the impacts of artificial intelligence; undergraduate mentoring.</p>
+      </div>
+      <div class="when">Jan 2017 - Apr 2019</div>
+      <div class="item">
+        <p class="title">Network Specialist</p>
+        <p class="place">Huawei Technologies, Tehran</p>
+        <p>Network equipment; taught internal networking classes; Huawei Certified Network Associate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="awards">
+  <div class="wrap">
+    <p class="kicker">Awards</p>
+    <h2>Awards and honors</h2>
+    <ul class="plain">
+      <li class="award"><span><b>FOS Dean's Research Fund, Travel Award for Postdoctoral Fellows</b>, Faculty of Science, Toronto Metropolitan University, to present at ICML 2025</span><span class="yr">2025</span></li>
+      <li class="award"><span><b>Ranked first in the graduating class</b>, M.Sc., Amirkabir University of Technology</span><span class="yr">2019</span></li>
+      <li class="award"><span><b>Ranked first in the graduating class</b>, B.Sc., Semnan University</span><span class="yr">2016</span></li>
+      <li class="award"><span><b>Huawei-funded doctoral research program</b>, multi-year selection funding the doctorate at Queen's University</span><span class="yr">2019</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="teaching" class="alt">
+  <div class="wrap">
+    <p class="kicker">Teaching</p>
+    <h2>Teaching</h2>
+    <div class="twocol">
+      <div>
+        <h3>Courses, Queen's ECE</h3>
+        <ul class="plain">
+          <li><b>MATLAB programming and mathematics</b>: instructor and lab instructor, about 110 students per week</li>
+          <li><b>Python for discrete-time signal processing</b>: instructor and lab instructor, about 90 students</li>
+          <li>Teaching assistant across four academic years, including mentoring and marking</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Talks</h3>
+        <ul class="plain">
+          <li><b>ICML 2025</b>, Vancouver: autoencoder-based hybrid replay</li>
+          <li><b>ICLR 2025</b>, Singapore: federated class-incremental learning</li>
+          <li><b>NeurIPS 2024</b>, Vancouver: task confusion and catastrophic forgetting</li>
+          <li><b>ICSPIS 2018</b>, and semi-annual research presentations at Huawei Canada, 2019 to 2023</li>
+          <li>Public talks on artificial intelligence with the Ingenuity Lab, Queen's</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="service">
+  <div class="wrap">
+    <p class="kicker">Service</p>
+    <h2>Reviewing and service</h2>
+    <div class="twocol">
+      <div>
+        <h3>Conferences</h3>
+        <ul class="plain">
+          <li>Reviewer since 2021 for <b>ICML, NeurIPS, ICLR, CVPR</b> and <b>AAAI</b></li>
+          <li>Serving as a reviewer for NeurIPS 2026 and AAAI 2027 in the current cycle</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Journals</h3>
+        <ul class="plain">
+          <li>IEEE Transactions on Communications</li>
+          <li>IEEE/ACM Transactions on Networking</li>
+          <li>IEEE Transactions on Pattern Analysis and Machine Intelligence</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="wrap">
+    <p class="kicker">Contact</p>
+    <h2>Contact</h2>
+    <p>Department of Computer Science, Toronto Metropolitan University, Toronto, Ontario, Canada.<br>
+    Email: mkn [at] torontomu [dot] ca &nbsp;|&nbsp; miladkhademinori [at] gmail [dot] com</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Milad Khademi Nori. Last updated September 2026.</span>
+    <span><a href="#top">Back to top</a></span>
+  </div>
+</footer>
+
+</body>
 </html>
